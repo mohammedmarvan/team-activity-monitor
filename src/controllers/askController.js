@@ -4,6 +4,7 @@ import { getUserIssues } from '../services/jira-client.js';
 import { getRecentCommits, getPullRequests } from '../services/github-client.js';
 import { generateResponse } from '../services/response-generator.js';
 import logger from '../utils/logger.js';
+import { getCache, setCache } from '../utils/cache.js';
 
 export async function askController(req, res) {
   const query = req.body.query;
@@ -20,6 +21,15 @@ export async function askController(req, res) {
   if (!identity) {
     logger.warn(`No mapping found for ${name}`);
     return res.json({ answer: `I don't have records for ${name}.` });
+  }
+
+  // Check cache
+  const cacheKey = `${intent}:${name.toLowerCase()}`;
+
+  const cached = getCache(cacheKey);
+  if (cached) {
+    logger.info(`Serving cached data for ${name}`);
+    return res.json({ answer: cached });
   }
 
   try {
@@ -62,6 +72,9 @@ export async function askController(req, res) {
 
     const answer = await generateResponse(name, { jira, commits, prs }, intent);
     logger.info(`Generated response for ${name}`);
+
+    // set to cache
+    setCache(cacheKey, answer);
     res.json({ answer });
   } catch (err) {
     logger.error(`Error fetching data for ${name}: ${err.message}`);
