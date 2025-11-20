@@ -38,7 +38,7 @@ describe('query-parser', () => {
     });
 
     it('should extract "both" intent from query with "activity"', () => {
-      const result = parseQuery('What is Marvan\'s activity?');
+      const result = parseQuery("What is Marvan's activity?");
       expect(result.intent).toBe('both');
       expect(result.name).toBeTruthy();
     });
@@ -50,7 +50,7 @@ describe('query-parser', () => {
     });
 
     it('should extract name from query with possessive form', () => {
-      const result = parseQuery('What is Marvan\'s GitHub activity?');
+      const result = parseQuery("What is Marvan's GitHub activity?");
       // The intent should be "both" because it contains "activity"
       expect(result.intent).toBe('both');
       expect(result).toHaveProperty('name');
@@ -75,4 +75,3 @@ describe('query-parser', () => {
     });
   });
 });
-

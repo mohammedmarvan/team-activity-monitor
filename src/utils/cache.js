@@ -4,7 +4,7 @@ const TTL = 60 * 1000;
 export function setCache(key, data) {
   cache[key] = {
     data,
-    expiry: Date.now() + TTL
+    expiry: Date.now() + TTL,
   };
 }
 

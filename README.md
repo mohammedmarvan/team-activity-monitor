@@ -10,6 +10,7 @@ Team Activity Monitor is a lightweight Express + browser UI that lets you ask ab
 ## Installation
 
 1. Clone this repository and switch into the project directory:
+
    ```bash
    git clone git@github.com:mohammedmarvan/team-activity-monitor.git
    cd team-activity-monitor
@@ -74,9 +75,10 @@ For security reasons, real Jira/GitHub user identifiers are not stored in the re
 To configure your own team mapping:
 
 1. Copy the sample file:
-    ```
-    cp src/config/teamMap.sample.js src/config/teamMap.private.js
-    ```
+
+   ```
+   cp src/config/teamMap.sample.js src/config/teamMap.private.js
+   ```
 
 2. Replace the sample data with your real Jira/GitHub IDs.
 3. `teamMap.private.js` is automatically excluded from Git and loaded at runtime.
@@ -98,16 +100,19 @@ The project includes a comprehensive test suite using Jest. Tests are located in
 ### Running Tests
 
 Run all tests:
+
 ```bash
 npm test
 ```
 
 Run tests in watch mode (automatically re-runs on file changes):
+
 ```bash
 npm run test:watch
 ```
 
 Run tests with coverage report:
+
 ```bash
 npm run test:coverage
 ```
@@ -115,12 +120,14 @@ npm run test:coverage
 ### Test Structure
 
 Tests are organized in the `__tests__` directory:
+
 - `__tests__/services/` - Tests for service modules (query-parser, github-client, jira-client)
 - `__tests__/controllers/` - Tests for controller modules (askController)
 
 ### Test Coverage
 
 The test suite covers:
+
 - **Query Parsing**: Intent detection (Jira, GitHub, both) and name extraction
 - **GitHub Client**: Commit fetching, PR fetching, and error handling
 - **Jira Client**: Issue fetching and formatting
@@ -129,6 +136,7 @@ The test suite covers:
 ### Writing New Tests
 
 When adding new features, ensure you:
+
 1. Create test files in the appropriate `__tests__` subdirectory
 2. Follow the naming convention: `*.test.js`
 3. Mock external dependencies (APIs, config files) using Jest mocks
@@ -151,36 +159,43 @@ Once the server is running, you'll see the chat interface. Simply type your ques
 ### Workflow Screenshots
 
 #### 1. Loading State
+
 When you submit a query, the system shows a loading indicator while fetching data from Jira and/or GitHub:
 
 ![Loading State](screenshots/Screenshot_loading.png)
 
 #### 2. GitHub Activity Summary
+
 When querying GitHub activity, you'll see a detailed summary of commits and pull requests:
 
 ![GitHub Summary](screenshots/Screenshot_github_summary.png)
 
 #### 3. Jira Activity Summary
+
 For Jira queries, the system displays active issues assigned to the team member:
 
 ![Jira Summary](screenshots/Screenshot_jira_summary.png)
 
 #### 4. Combined Activity Summary
+
 When querying both platforms or general activity, you'll get a comprehensive overview:
 
 ![Activity Summary](screenshots/Screenshot_activity_summary.png)
 
 #### 5. No Activity Found
+
 If a team member has no recent activity, the system will inform you:
 
 ![No Activity](screenshots/Screenshot_no_activity.png)
 
 #### 6. No Jira Found
+
 If the system cannot find any activity on the Jira:
 
 ![No Jira Found](screenshots/Screenshot_no_jira_found.png)
 
 #### 7. No User Found
+
 If the system cannot identify the team member from your query:
 
 ![No User Found](screenshots/Screenshot_no_user_found.png)

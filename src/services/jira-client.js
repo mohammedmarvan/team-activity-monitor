@@ -23,6 +23,6 @@ export async function getUserIssues(username) {
     summary: issue.fields.summary,
     status: issue.fields.status.name,
     updated: issue.fields.updated,
-    timetracking: issue.fields.timetracking
+    timetracking: issue.fields.timetracking,
   }));
 }

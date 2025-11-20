@@ -104,4 +104,3 @@ describe('jira-client', () => {
     });
   });
 });
-
