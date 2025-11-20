@@ -10,6 +10,10 @@ Team Activity Monitor is a lightweight Express + browser UI that lets you ask ab
 ## Installation
 
 1. Clone this repository and switch into the project directory:
+   ```bash
+   git clone git@github.com:mohammedmarvan/team-activity-monitor.git
+   cd team-activity-monitor
+   ```
 
 2. Install dependencies:
    ```bash
@@ -81,10 +85,68 @@ To configure your own team mapping:
 
 1. Start the server (`npm run dev` or `npm start`).
 2. Open your browser to `http://localhost:<PORT>` (defaults to `http://localhost:3000`).
-3. Enter a natural-language query such as “Show GitHub activity for Marvan this week”.
+3. Enter a natural-language query such as "Show GitHub activity for Marvan this week".
 4. The chat window displays:
    - Your prompt bubbles on the right.
    - Formatted Jira/GitHub summaries on the left (parsed via `marked` for Markdown).
 5. Monitor `logs/app.log` (or the terminal) for request/response traces if troubleshooting.
+
+## Workflow & Usage
+
+The Team Activity Monitor provides an intuitive chat interface to query team member activity. Here's how it works:
+
+### Getting Started
+
+Once the server is running, you'll see the chat interface. Simply type your question in natural language about any team member's activity.
+
+### Example Queries
+
+- "What is Marvan's GitHub activity?"
+- "Show me Jira issues for Abhishek"
+- "What has Mohammed been working on?"
+
+### Workflow Screenshots
+
+#### 1. Loading State
+When you submit a query, the system shows a loading indicator while fetching data from Jira and/or GitHub:
+
+![Loading State](screenshots/Screenshot_loading.png)
+
+#### 2. GitHub Activity Summary
+When querying GitHub activity, you'll see a detailed summary of commits and pull requests:
+
+![GitHub Summary](screenshots/Screenshot_github_summary.png)
+
+#### 3. Jira Activity Summary
+For Jira queries, the system displays active issues assigned to the team member:
+
+![Jira Summary](screenshots/Screenshot_jira_summary.png)
+
+#### 4. Combined Activity Summary
+When querying both platforms or general activity, you'll get a comprehensive overview:
+
+![Activity Summary](screenshots/Screenshot_activity_summary.png)
+
+#### 5. No Activity Found
+If a team member has no recent activity, the system will inform you:
+
+![No Activity](screenshots/Screenshot_no_activity.png)
+
+#### 6. No Jira Found
+If the system cannot find any activity on the Jira:
+
+![No Jira Found](screenshots/Screenshot_no_jira_found.png)
+
+#### 7. No User Found
+If the system cannot identify the team member from your query:
+
+![No User Found](screenshots/Screenshot_no_user_found.png)
+
+### How It Works
+
+1. **Query Parsing**: Your natural language query is parsed to extract the team member's name and intent (Jira, GitHub, or both).
+2. **Data Fetching**: The system queries the appropriate APIs (Jira, GitHub) based on the intent.
+3. **Response Generation**: Using OpenAI, the system generates a human-readable summary of the activity.
+4. **Display**: The formatted response is displayed in the chat interface with proper Markdown rendering.
 
 With the environment configured and the server running, you can now monitor teammate activity across Jira and GitHub in one place.

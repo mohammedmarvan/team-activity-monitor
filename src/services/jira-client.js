@@ -13,7 +13,7 @@ export async function getUserIssues(username) {
   const url = `${jira.baseUrl}/rest/api/3/search/jql`;
   const body = {
     jql,
-    fields: ['summary', 'status', 'updated'],
+    fields: ['summary', 'status', 'updated', 'timetracking'],
   };
 
   const response = await axios.post(url, body, authHeader);
@@ -23,5 +23,6 @@ export async function getUserIssues(username) {
     summary: issue.fields.summary,
     status: issue.fields.status.name,
     updated: issue.fields.updated,
+    timetracking: issue.fields.timetracking
   }));
 }
