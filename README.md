@@ -91,6 +91,49 @@ To configure your own team mapping:
    - Formatted Jira/GitHub summaries on the left (parsed via `marked` for Markdown).
 5. Monitor `logs/app.log` (or the terminal) for request/response traces if troubleshooting.
 
+## Testing
+
+The project includes a comprehensive test suite using Jest. Tests are located in the `__tests__` directory.
+
+### Running Tests
+
+Run all tests:
+```bash
+npm test
+```
+
+Run tests in watch mode (automatically re-runs on file changes):
+```bash
+npm run test:watch
+```
+
+Run tests with coverage report:
+```bash
+npm run test:coverage
+```
+
+### Test Structure
+
+Tests are organized in the `__tests__` directory:
+- `__tests__/services/` - Tests for service modules (query-parser, github-client, jira-client)
+- `__tests__/controllers/` - Tests for controller modules (askController)
+
+### Test Coverage
+
+The test suite covers:
+- **Query Parsing**: Intent detection (Jira, GitHub, both) and name extraction
+- **GitHub Client**: Commit fetching, PR fetching, and error handling
+- **Jira Client**: Issue fetching and formatting
+- **Ask Controller**: Request handling, team member mapping, and response generation
+
+### Writing New Tests
+
+When adding new features, ensure you:
+1. Create test files in the appropriate `__tests__` subdirectory
+2. Follow the naming convention: `*.test.js`
+3. Mock external dependencies (APIs, config files) using Jest mocks
+4. Test both success and error scenarios
+
 ## Workflow & Usage
 
 The Team Activity Monitor provides an intuitive chat interface to query team member activity. Here's how it works:
